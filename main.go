@@ -1,6 +1,9 @@
 package main
 
 import (
+	"time"
+
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/jnxvi/nyalist/auth"
 	"github.com/jnxvi/nyalist/data"
@@ -28,6 +31,16 @@ func main() {
 	datacontroller = data.NewController(database.DB)
 	datarouter = data.NewRouter(datacontroller)
 	database.DB.AutoMigrate(&auth.User{})
+
+	r.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"https://localhost:3000"},
+		AllowCredentials: true,
+		AllowOriginFunc: func(origin string) bool {
+			return origin == "http://localhost:3000"
+		},
+		MaxAge: 12 * time.Hour,
+	}))
+
 	datarouter.Route(r)
 
 	authrouter.Route(r)
