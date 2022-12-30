@@ -1,0 +1,74 @@
+POST http://localhost:3000/api/signup
+Content-Type: application/json
+
+{
+    // Hna dir data ta3 l user hh 
+    "username":"onidev.py",
+    "email":"randomemail@random.com",
+    "password":"randompassworhere"
+}
+###
+
+POST http://localhost:3000/api/login
+Content-Type: application/json
+
+{ 
+
+    /// hnd ki dir login s7i7 ymdlk wa7ed token tkhabih f localstorage ta3 local browser
+    
+    "email":"aymen.charfaoui@outlook.com",
+    "password":"bokuakirada02265"
+}
+
+
+###
+/// had link jib biha l info ta3 l user li rah logged in doka
+// kima rak tchouf f request lazem t7at token li jibo m login
+GET http://localhost:3000/api/user/me
+Content-Type: application/json
+Authorization: token 69bf4b75656794799929f72fd9a95496e237b9b2
+###
+/// hna tsuprimi l user
+DELETE  http://localhost:3000/api/user/me/delete
+Content-Type: application/json
+Authorization: token 69bf4b75656794799929f72fd9a95496e237b9b2
+###
+/// update ll user
+PUT  http://localhost:3000/api/user/me/update
+Content-Type: application/json
+Authorization: token 69bf4b75656794799929f72fd9a95496e237b9b2
+
+{
+    "username":"onizuka.lol",
+    "email":"aymen.charfaoui@outlook.com"
+}
+
+
+###
+/// hna ymdlk l info 3la l anime
+GET http://localhost:3000/api/anime/search?query=bleach
+Content-Type: application/json
+
+###
+/// download links
+GET http://localhost:3000/api/anime/download?query=spy-x-family&episode=10
+Content-Type: application/json
+
+###
+/// watch links
+GET http://localhost:3000/api/anime/watch?query=spy-x-family&episode=3
+Content-Type: application/json
+
+###
+/// hada upcoming animes
+GET http://127.0.0.1:5050/api/anime/upcoming
+Content-Type: application/json
+
+
+###
+/// hada top animes
+GET http://127.0.0.1:5050/api/anime/top
+Content-Type: application/json
+
+
+
