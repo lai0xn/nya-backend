@@ -113,7 +113,7 @@ func (AnimeWrapper) GetUpcomingAnimes() (Response, error) {
 
 func (AnimeWrapper) GetTopAnimes() (Response, error) {
 
-	url := "https://api.jikan.moe/v4/seasons/top?limit=12"
+	url := "https://api.jikan.moe/v4/top/anime?limit=12"
 
 	responese, err := http.Get(url)
 	if err != nil {
