@@ -71,3 +71,27 @@ func (DataController) TopAnimes(c *gin.Context) {
 		"data": animes,
 	})
 }
+
+func (DataController) SearchByID(c *gin.Context) {
+	id := c.Param("id")
+	animes, err := wrapper.SearchAnimeByID(id)
+	if err != nil {
+		c.AbortWithStatusJSON(http.StatusBadRequest, err)
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"data": animes,
+	})
+}
+
+func (DataController) RandomAnime(c *gin.Context) {
+
+	animes, err := wrapper.RandomAnime()
+	if err != nil {
+		c.AbortWithStatusJSON(http.StatusBadRequest, err)
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"data": animes,
+	})
+}

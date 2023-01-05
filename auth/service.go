@@ -40,6 +40,7 @@ func (ac *AuthController) Login(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
 			"error": "cannot login with the provided credentials"},
 		)
+		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{"token": user.AuthToken})

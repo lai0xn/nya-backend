@@ -1,4 +1,4 @@
-POST http://localhost:3000/api/signup
+POST http://localhost:5050/api/signup
 Content-Type: application/json
 
 {
@@ -9,32 +9,32 @@ Content-Type: application/json
 }
 ###
 
-POST http://localhost:3000/api/login
+POST http://localhost:5050/api/login
 Content-Type: application/json
 
 { 
 
     /// hnd ki dir login s7i7 ymdlk wa7ed token tkhabih f localstorage ta3 local browser
     
-    "email":"aymen.charfaoui@outlook.com",
-    "password":"bokuakirada02265"
+    "email":"randomemail@random.com",
+    "password":"randompassworhere"
 }
 
 
 ###
 /// had link jib biha l info ta3 l user li rah logged in doka
 // kima rak tchouf f request lazem t7at token li jibo m login
-GET http://localhost:3000/api/user/me
+GET http://localhost:5050/api/user/me
 Content-Type: application/json
 Authorization: token 69bf4b75656794799929f72fd9a95496e237b9b2
 ###
 /// hna tsuprimi l user
-DELETE  http://localhost:3000/api/user/me/delete
+DELETE  http://localhost:5050/api/user/me/delete
 Content-Type: application/json
 Authorization: token 69bf4b75656794799929f72fd9a95496e237b9b2
 ###
 /// update ll user
-PUT  http://localhost:3000/api/user/me/update
+PUT  http://localhost:5050/api/user/me/update
 Content-Type: application/json
 Authorization: token 69bf4b75656794799929f72fd9a95496e237b9b2
 
@@ -46,28 +46,39 @@ Authorization: token 69bf4b75656794799929f72fd9a95496e237b9b2
 
 ###
 /// hna ymdlk l info 3la l anime
-GET http://localhost:3000/api/anime/search?query=bleach
+GET http://localhost:5050/api/search/anime?query=bleach
 Content-Type: application/json
 
 ###
 /// download links
-GET http://localhost:3000/api/anime/download?query=spy-x-family&episode=10
+GET http://localhost:5050/api/download/anime?query=spy-x-family&episode=10
 Content-Type: application/json
 
 ###
 /// watch links
-GET http://localhost:3000/api/anime/watch?query=spy-x-family&episode=3
+GET http://localhost:5050/api/watch/anime?query=spy-x-family&episode=3
 Content-Type: application/json
 
 ###
 /// hada upcoming animes
-GET http://127.0.0.1:5050/api/anime/upcoming
+GET http://127.0.0.1:5050/api/upcoming/anime
 Content-Type: application/json
 
 
 ###
 /// hada top animes
-GET http://127.0.0.1:5050/api/anime/top
+GET http://127.0.0.1:5050/api/top/anime
+Content-Type: application/json
+
+
+###
+/// hada anime bl mal_id
+GET http://127.0.0.1:5050/api/anime/1
+Content-Type: application/json
+###
+
+/// random anime
+GET http://127.0.0.1:5050/api/random/anime
 Content-Type: application/json
 
 

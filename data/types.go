@@ -4,6 +4,10 @@ type Response struct {
 	Data []Anime `json:"data"`
 }
 
+type SearchData struct {
+	Data Anime `json:"data"`
+}
+
 type Anime struct {
 	Name       string   `json:"title"`
 	MalId      int      `json:"mal_id"`

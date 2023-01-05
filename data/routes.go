@@ -15,10 +15,12 @@ func NewRouter(controller *DataController) *DataRouter {
 
 func (r DataRouter) Route(router *gin.Engine) {
 
-	router.GET("/api/anime/search", r.dataontroller.SearchAnime)
-	router.GET("/api/anime/watch", r.dataontroller.WatchLink)
-	router.GET("/api/anime/download", r.dataontroller.DownloadLinks)
-	router.GET("/api/anime/upcoming", r.dataontroller.UpcomingAnimes)
-	router.GET("/api/anime/top", r.dataontroller.TopAnimes)
+	router.GET("/api/search/anime", r.dataontroller.SearchAnime)
+	router.GET("/api/watch/anime", r.dataontroller.WatchLink)
+	router.GET("/api/download/anime", r.dataontroller.DownloadLinks)
+	router.GET("/api/upcoming/anime", r.dataontroller.UpcomingAnimes)
+	router.GET("/api/top/anime", r.dataontroller.TopAnimes)
+	router.GET("/api/anime/:id", r.dataontroller.SearchByID)
+	router.GET("/api/random/anime", r.dataontroller.RandomAnime)
 
 }
