@@ -2,6 +2,7 @@ package data
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/gocolly/colly"
 )
@@ -39,5 +40,27 @@ func (AnimeWrapper) AnimeWatchLink(query string, episode string) string {
 
 	c.Wait()
 	return watchlink
+
+}
+
+func (AnimeWrapper) GetLatestEpisodes() []Episode {
+	url := blkom_base_url
+	var episodes []Episode
+	c := colly.NewCollector(
+		colly.Async(true),
+	)
+	c.OnHTML(".recent-episode", func(h *colly.HTMLElement) {
+
+		image := blkom_base_url + h.ChildAttr(".lazy", "data-original")
+		name := h.ChildText(".text .name")
+		episode := h.ChildText(".text .episode-number")
+		episode = strings.ReplaceAll(strings.ReplaceAll(episode, " ", ""), "الحلقة", "")
+		episode = strings.ReplaceAll(episode, ":", "")
+		episodes = append(episodes, Episode{Poster: image, AnimeName: name, Episode: episode})
+
+	})
+	c.Visit(url)
+	c.Wait()
+	return episodes
 
 }

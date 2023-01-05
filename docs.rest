@@ -82,4 +82,11 @@ GET http://127.0.0.1:5050/api/random/anime
 Content-Type: application/json
 
 
+###
+
+/// latest episodes
+GET http://127.0.0.1:5050/api/latest/anime
+Content-Type: application/json
+
+
 

@@ -22,5 +22,6 @@ func (r DataRouter) Route(router *gin.Engine) {
 	router.GET("/api/top/anime", r.dataontroller.TopAnimes)
 	router.GET("/api/anime/:id", r.dataontroller.SearchByID)
 	router.GET("/api/random/anime", r.dataontroller.RandomAnime)
+	router.GET("/api/latest/anime", r.dataontroller.LatestEpisodes)
 
 }

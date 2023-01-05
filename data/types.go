@@ -53,3 +53,9 @@ type DownloadLink struct {
 	ServerName string `json:"server"`
 	Url        string `json:"download_url"`
 }
+
+type Episode struct {
+	Poster    string `json:"poster"`
+	Episode   string `json:"episode"`
+	AnimeName string `json:"anime"`
+}

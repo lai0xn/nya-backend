@@ -77,6 +77,7 @@ func (DataController) SearchByID(c *gin.Context) {
 	animes, err := wrapper.SearchAnimeByID(id)
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusBadRequest, err)
+		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{
@@ -85,11 +86,19 @@ func (DataController) SearchByID(c *gin.Context) {
 }
 
 func (DataController) RandomAnime(c *gin.Context) {
-
-	animes, err := wrapper.RandomAnime()
+	anime, err := wrapper.RandomAnime()
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusBadRequest, err)
+		return
 	}
+	c.JSON(http.StatusOK, gin.H{
+		"data": anime,
+	})
+}
+
+func (DataController) LatestEpisodes(c *gin.Context) {
+
+	animes := wrapper.GetLatestEpisodes()
 
 	c.JSON(http.StatusOK, gin.H{
 		"data": animes,
