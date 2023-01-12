@@ -7,6 +7,12 @@ import (
 	"github.com/gocolly/colly"
 )
 
+type WatchData struct {
+	AnimeName string `json:"anime_name"`
+	Episode   string `json:"episode"`
+	Link      string `json:"watch_link"`
+}
+
 func GetFirstLink(query string) string {
 	c := colly.NewCollector(
 		colly.Async(true),
@@ -25,21 +31,28 @@ func GetFirstLink(query string) string {
 	return watchlinks[0]
 }
 
-func (AnimeWrapper) AnimeWatchLink(query string, episode string) string {
+func (AnimeWrapper) AnimeWatchLink(query string, episode string) WatchData {
+	var watch WatchData
 	c := colly.NewCollector(
 		colly.Async(true),
 	)
-	var watchlink string
+
 	var url string = GetFirstLink(query) + episode
 	fmt.Println(url)
 	c.OnHTML(".video", func(h *colly.HTMLElement) {
-		watchlink = h.Attr("src")
+		watch.Link = h.Attr("src")
 		fmt.Println(h.Attr("src"))
+	})
+	c.OnHTML(".anime-name", func(h *colly.HTMLElement) {
+		watch.AnimeName = h.Text
+	})
+	c.OnHTML(".episode-number", func(h *colly.HTMLElement) {
+		watch.Episode = strings.ReplaceAll(h.Text, "الحلقة : ", "")
 	})
 	c.Visit(url)
 
 	c.Wait()
-	return watchlink
+	return watch
 
 }
 

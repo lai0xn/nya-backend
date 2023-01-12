@@ -20,23 +20,40 @@ Content-Type: application/json
     "password":"randompassworhere"
 }
 
+/// Profiles
+###
+
+GET http://localhost:5050/api/profiles/onidev.py
+Content-Type: application/json
+
+###
+
+PATCH  http://localhost:5050/api/profiles/me/update
+Content-Type: application/json
+Authorization: token 962a7d5e2f5e0da6c2bd9b6bda8d0515ae704843
+
+{
+    "bio":"oni le zarbo3"
+}
+
+
 
 ###
 /// had link jib biha l info ta3 l user li rah logged in doka
 // kima rak tchouf f request lazem t7at token li jibo m login
 GET http://localhost:5050/api/user/me
 Content-Type: application/json
-Authorization: token 69bf4b75656794799929f72fd9a95496e237b9b2
+Authorization: token 962a7d5e2f5e0da6c2bd9b6bda8d0515ae704843
 ###
 /// hna tsuprimi l user
 DELETE  http://localhost:5050/api/user/me/delete
 Content-Type: application/json
-Authorization: token 69bf4b75656794799929f72fd9a95496e237b9b2
+Authorization: token 962a7d5e2f5e0da6c2bd9b6bda8d0515ae704843
 ###
 /// update ll user
 PUT  http://localhost:5050/api/user/me/update
 Content-Type: application/json
-Authorization: token 69bf4b75656794799929f72fd9a95496e237b9b2
+Authorization: token 962a7d5e2f5e0da6c2bd9b6bda8d0515ae704843
 
 {
     "username":"onizuka.lol",
@@ -88,5 +105,11 @@ Content-Type: application/json
 GET http://127.0.0.1:5050/api/latest/anime
 Content-Type: application/json
 
+
+###
+//add-to-list
+POST http://127.0.0.1:5050/api/profiles/add-to-list/50330
+Content-Type: application/json
+Authorization: token 962a7d5e2f5e0da6c2bd9b6bda8d0515ae704843
 
 

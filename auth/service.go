@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/jnxvi/nyalist/models"
 	"gorm.io/gorm"
 
 	"golang.org/x/crypto/bcrypt"
@@ -21,7 +22,7 @@ func NewController(db *gorm.DB) *AuthController {
 
 func (ac *AuthController) Login(c *gin.Context) {
 	var loginData LoginType
-	var user User
+	var user models.User
 	if err := c.BindJSON(&loginData); err != nil {
 		c.AbortWithError(http.StatusBadRequest, err)
 		return
@@ -63,7 +64,7 @@ func (ac *AuthController) Signup(c *gin.Context) {
 		c.AbortWithError(http.StatusBadRequest, err)
 		return
 	}
-	ac.DB.Create(&User{Username: user.Username,
+	ac.DB.Create(&models.User{Username: user.Username,
 		Email: user.Email, Password: string(hashed_password),
 		AuthToken: tokenManager.generate_token(),
 	})

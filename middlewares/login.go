@@ -5,8 +5,8 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/jnxvi/nyalist/auth"
 	"github.com/jnxvi/nyalist/database"
+	"github.com/jnxvi/nyalist/models"
 )
 
 var authorizationHeaderKey = "authorization"
@@ -15,7 +15,7 @@ var token string
 
 func LoginMiddleware() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		var user auth.User
+		var user models.User
 		authorizationheader := ctx.GetHeader(authorizationHeaderKey)
 		if len(authorizationheader) == 0 {
 			ctx.AbortWithStatusJSON(http.StatusBadRequest, "Authorization token not provided")

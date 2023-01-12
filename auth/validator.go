@@ -4,12 +4,13 @@ import (
 	"errors"
 
 	"github.com/jnxvi/nyalist/database"
+	"github.com/jnxvi/nyalist/models"
 )
 
 type Validator struct{}
 
 func (Validator) ValidateEmail(email string) error {
-	var user User
+	var user models.User
 
 	database.DB.First(&user, "email = ?", email)
 
@@ -20,7 +21,7 @@ func (Validator) ValidateEmail(email string) error {
 }
 
 func (Validator) ValidateUsername(username string) error {
-	var user User
+	var user models.User
 
 	database.DB.First(&user, "username = ?", username)
 
