@@ -42,10 +42,10 @@ func main() {
 	database.DB.AutoMigrate(&models.Anime{})
 
 	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"https://localhost:3000","nyaanime.vercel.app"},
+		AllowOrigins:     []string{"http://localhost:3000","https://nyaanime.vercel.app"},
 		AllowCredentials: true,
 		AllowOriginFunc: func(origin string) bool {
-			return origin == "nyaanime.vercel.app"
+			return origin == "https://nyaanime.vercel.app"
 		},
 		MaxAge: 12 * time.Hour,
 	}))
